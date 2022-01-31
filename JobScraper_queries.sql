@@ -230,7 +230,15 @@ DROP COLUMN YearlySalary
 ALTER TABLE scraped_jobs
 DROP COLUMN JobSalary
 
+-- How many of the role are 'Senior' positions? These roles should be removed as I do not have the experience required for those jobs.
 
+Select Count(*) as senior_roles
+from scraped_jobs
+where JobTitle LIKE '%enior%'
+
+-- There are 68 Senior roles. Let's delete them.
+
+DELETE FROM scraped_jobs WHERE JobTitle LIKE '%enior%';
 
 -- Insights
 
@@ -240,7 +248,7 @@ Select WorkModality, ROUND(count(*) * 100.0 / sum(count(*)) over(),2) as percent
 from scraped_jobs
 group by WorkModality 
 
--- 9.7% of jobs are fully remote, while 5.15% are temporarily remote, to what we could assume will change back to on-site or hybrid once the covid rules ease up.
+-- 10.31% of jobs are fully remote, while 5.73% are temporarily remote, to what we could assume will change back to on-site or hybrid once the covid rules ease up.
 
 -- How many jobs are based in Edinburgh or Glasgow?
 
@@ -249,7 +257,7 @@ from scraped_jobs
 where JobLocation IN ('Edinburgh','Glasgow')
 group by JobLocation
 
--- 168 jobs are based in Edinburgh, while approximately half that are based in the neighboring city of Glasgow.
+-- 120 jobs are based in Edinburgh, while 76 are based in the neighboring city of Glasgow.
 
 -- What is the company with the greatest amount of job postings?
 
@@ -258,7 +266,7 @@ from scraped_jobs
 group by Company
 Order by number_of_jobs_per_company desc
 
--- With a total of 12 job postings, Barclays is the company with the most job openings.
+-- With a total of 11 job postings, Barclays is the company with the most job openings.
 
 -- Of the specified salary ranges, what are the average daily and average yearly?
 
@@ -301,17 +309,7 @@ AVG(YearlySalary_Lower) as average_yearly_lower,
 from scraped_jobs
 where DailySalary_Upper is not null OR DailySalary_Lower is not null OR YearlySalary_Upper is not null OR YearlySalary_Lower is not null
 
--- The average daily salary is £293 and the average yearly wage is £34,084.
-
--- How many of the role are 'Senior' positions? These roles should be removed as I do not have the experience required for those jobs.
-
-Select Count(*) as senior_roles
-from scraped_jobs
-where JobTitle LIKE '%enior%'
-
--- There are 68 Senior roles. Let's delete them.
-
-DELETE FROM scraped_jobs WHERE JobTitle LIKE '%enior%';
+-- The average daily salary is £311 and the average yearly wage is £31,902.
 
 
 -- For the locations considered, what are the top three jobs with the highest compensation?
@@ -336,4 +334,4 @@ FROM scraped_jobs
 Group by JobLocation, YearlySalary_Upper, calculated_yearlysalary, JobTitle
 Order by highestsalary desc
 
--- The highest paying job if a BI Developer (Power BI) based in Glasgow, with a pay equivalent to £120k a year. 
+-- The highest paying job if a BI Developer (Power BI) based in Glasgow, with a pay equivalent to £120k a year. The salaries range from £65k, all the way up to £120k.
