@@ -19,10 +19,9 @@ I was particularly interested in learning the percentage of remote jobs availabl
 - 518 rows were initially extracted by the web-scraper after running the main function with the desired attributes (JobTitle = 'data analysis', JobLocation = 'scotland').
 - Once in SQL, duplicate rows were dealt with, elimination a total of 188 duplicate rows.
 - Data was cleaned by adding new columns, splitting values in existing columns and removing those that were no longer needed.
-- 9.7% of jobs are fully remote, while 5.15% are temporarily remote, which we would assume will change back to on-site or hybrid once the covid rules ease up.
-- 168 jobs are based in Edinburgh, while approximately half that are based in the city of Glasgow.
-- I learned that, with a total of 12 job postings, Barclays is the company with the most job openings.
-- The average daily salary is £293 and the average yearly wage is £34,084.
 - 'Senior' positions were removed as I am underqualified for these.
-- The top 10 highest paying jobs have a salary range of £ to £ .
- 
+- 10.31% of jobs are fully remote, while 5.73% are temporarily remote, which we would assume will change back to on-site or hybrid once the covid rules ease up.
+- 120 jobs are based in Edinburgh, while 76 are based in the city of Glasgow.
+- I learned that, with a total of 11 job postings, Barclays is the company with the most job openings.
+- The average daily salary is £311 and the average yearly wage is £31,902.
+- The top 10 highest paying jobs have a salary range of £65 to £120. Half of these are for Business Analyst positions, which could indicate that Business Analysts are compensated well and could be an interesting field to look into. 
